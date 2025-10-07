@@ -1,0 +1,29 @@
+mport networkx as nx
+print("=== Undirected Graph ===")
+G_undirected = nx.Graph()
+edges_with_cost = [
+    ('A', 'B', 4),
+    ('A', 'C', 2),
+    ('B', 'C', 5),
+    ('B', 'D', 10),
+    ('C', 'D', 3),
+    ('D', 'E', 8),
+]
+G_undirected.add_weighted_edges_from(edges_with_cost)
+print("Edges and their costs:")
+total_cost = 0
+for u, v, data in G_undirected.edges(data=True):
+    cost = data['weight']
+    print(f"{u} -- {v} : {cost}")
+    total_cost += cost
+print(f"Total cost of all edges (Undirected): {total_cost}\n")
+print("=== Directed Graph ===")
+G_directed = nx.DiGraph()
+G_directed.add_weighted_edges_from(edges_with_cost)
+print("Edges and their costs:")
+total_cost_directed = 0
+for u, v, data in G_directed.edges(data=True):
+    cost = data['weight']
+    print(f"{u} -> {v} : {cost}")
+    total_cost_directed += cost
+print(f"Total cost of all edges (Directed): {total_cost_directed}")
